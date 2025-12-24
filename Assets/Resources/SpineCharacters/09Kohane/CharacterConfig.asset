@@ -17,3 +17,4 @@ MonoBehaviour:
   defaultGender: 1
   defaultMaleStyle: 0
   defaultFemaleStyle: 4
+  defaultAIPrompt: 

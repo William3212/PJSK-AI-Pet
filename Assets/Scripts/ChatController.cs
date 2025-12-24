@@ -26,19 +26,6 @@ public class ChatController : MonoBehaviour
         );
     }
 
-
-    AIResponse FakeAI(string userText)
-    {
-        if (userText.Contains("开心"))
-            return new AIResponse("我也觉得很开心呢！", Emotion.Joy);
-
-        if (userText.Contains("难过"))
-            return new AIResponse("别难过，我在呢。", Emotion.Sad);
-
-        // 没有明显情绪
-        return new AIResponse("我在听你说哦。", null);
-    }
-
     void Start()
     {
         inputField.onSelect.AddListener(OnInputSelected);

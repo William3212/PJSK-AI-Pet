@@ -16,4 +16,5 @@ MonoBehaviour:
   skeletonData: {fileID: 11400000, guid: 6c95db8ad2a37c04e8e00bcb9f517792, type: 2}
   defaultGender: 1
   defaultMaleStyle: 0
-  defaultFemaleStyle: 5
+  defaultFemaleStyle: 4
+  defaultAIPrompt: 

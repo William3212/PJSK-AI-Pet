@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\SettingPanelUI.cs" />
      <Compile Include="Assets\Scripts\AIResponse.cs" />
      <Compile Include="Assets\Scripts\Emotion.cs" />
+     <Compile Include="Assets\Scripts\IdleJoyController.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\Spine\version.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

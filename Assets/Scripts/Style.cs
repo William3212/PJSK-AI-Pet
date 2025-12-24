@@ -11,6 +11,5 @@ public enum FemaleStyle
     Cool,
     Cute,
     Happy,
-    KohaneUnit,
     Pure
 }

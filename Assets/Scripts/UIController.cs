@@ -104,7 +104,7 @@ public class UIController : MonoBehaviour
                 new List<string>
                 {
                     "Adult", "Cool", "Cute",
-                    "Happy", "KohaneUnit", "Pure"
+                    "Happy", "Pure"
                 }
             );
         }

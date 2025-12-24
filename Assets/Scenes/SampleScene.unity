@@ -6859,6 +6859,7 @@ GameObject:
   - component: {fileID: 1905521475}
   - component: {fileID: 1905521478}
   - component: {fileID: 1905521479}
+  - component: {fileID: 1905521480}
   m_Layer: 0
   m_Name: Spine GameObject (sekai_atlas)
   m_TagString: Untagged
@@ -7039,6 +7040,21 @@ MonoBehaviour:
   maleStyle: 0
   femaleStyle: 0
   emotion: 0
+  idleJoyController: {fileID: 1905521480}
+--- !u!114 &1905521480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905521470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05bcca94050c1cb489441d5edf8adde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1905521479}
+  idleTimeToJoy: 60
 --- !u!1 &1988876113
 GameObject:
   m_ObjectHideFlags: 0

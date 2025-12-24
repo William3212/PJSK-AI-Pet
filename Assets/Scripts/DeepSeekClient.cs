@@ -29,10 +29,11 @@ public class DeepSeekClient : MonoBehaviour
             characterPrompt =
                 characterManager.CurrentCharacter.runtimeAIPrompt;
         }
+
         string prompt = BuildPrompt(
-        userInput,
-        characterManager.CurrentCharacter.runtimeAIPrompt
-    );
+            userInput,
+            characterManager.CurrentCharacter.runtimeAIPrompt
+        );
 
         DeepSeekRequest requestData = new DeepSeekRequest
         {
@@ -46,30 +47,33 @@ public class DeepSeekClient : MonoBehaviour
         string json = JsonUtility.ToJson(requestData);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
-        UnityWebRequest request = new UnityWebRequest(API_URL, "POST");
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-
-        request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", $"Bearer {apiKey}");
-
-        yield return request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success)
+        using (UnityWebRequest request = new UnityWebRequest(API_URL, "POST"))
         {
-            Debug.LogError(request.error);
-            onResult?.Invoke(new AIResponse("（网络出错了）", null));
-            yield break;
-        }
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
 
-        DeepSeekResponse response =
-            JsonUtility.FromJson<DeepSeekResponse>(request.downloadHandler.text);
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Authorization", $"Bearer {apiKey}");
 
-        string content = response.choices[0].message.content;
+            yield return request.SendWebRequest();
 
-        AIResponse aiResponse = ParseAIResponse(content);
-        onResult?.Invoke(aiResponse);
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError(request.error);
+                onResult?.Invoke(new AIResponse("（网络出错了）", null));
+                yield break;
+            }
+
+            DeepSeekResponse response =
+                JsonUtility.FromJson<DeepSeekResponse>(request.downloadHandler.text);
+
+            string content = response.choices[0].message.content;
+
+            AIResponse aiResponse = ParseAIResponse(content);
+            onResult?.Invoke(aiResponse);
+        } // ⭐⭐ 这里自动 Dispose 所有 Native 资源
     }
+
 
     // ===== Prompt =====
 
@@ -85,14 +89,14 @@ $@"你是一个桌宠角色，需要和用户简短对话
 请根据用户的话回复一句自然的话，并判断是否存在明显情绪。
 
 可用情绪只有以下这些（如果没有明显情绪，就返回 null）：
-Joy, Sad, Angry, Surprise, Doubt, Laugh
+Sad, Angry, Surprise, Doubt, Laugh
 
 请严格以 JSON 格式返回，不要包含任何多余文字。
 
 返回格式示例：
 {{
   ""text"": ""你的回复内容"",
-  ""emotion"": ""Joy""
+  ""emotion"": ""Sad""
 }}
 
 如果没有情绪：
