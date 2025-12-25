@@ -23,6 +23,11 @@ public static class CharacterLoader
                 defaultMaleStyle = cfg.defaultMaleStyle,
                 defaultFemaleStyle = cfg.defaultFemaleStyle,
 
+                runtimeGender = cfg.defaultGender,
+                runtimeStyle = cfg.defaultGender == Gender.Male
+                    ? (int)cfg.defaultMaleStyle
+                    : (int)cfg.defaultFemaleStyle,
+
                 // ⭐ 用默认 Prompt 初始化
                 runtimeAIPrompt = cfg.defaultAIPrompt
             };

@@ -2643,9 +2643,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: character
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3794,7 +3792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Male
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb6263f9ff0e70d4db73dec8dc044f41, type: 2}
   m_sharedMaterial: {fileID: 1837019647841025092, guid: bb6263f9ff0e70d4db73dec8dc044f41, type: 2}
@@ -4847,9 +4845,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Style
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5257,11 +5253,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Male
-      m_Image: {fileID: 0}
-    - m_Text: Female
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -6518,7 +6510,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: character
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb6263f9ff0e70d4db73dec8dc044f41, type: 2}
   m_sharedMaterial: {fileID: 1837019647841025092, guid: bb6263f9ff0e70d4db73dec8dc044f41, type: 2}
@@ -6690,7 +6682,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Style
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bb6263f9ff0e70d4db73dec8dc044f41, type: 2}
   m_sharedMaterial: {fileID: 1837019647841025092, guid: bb6263f9ff0e70d4db73dec8dc044f41, type: 2}
@@ -7118,6 +7110,7 @@ MonoBehaviour:
   characterManager: {fileID: 1905521478}
   animator: {fileID: 1905521479}
   deepSeekClient: {fileID: 898564459}
+  uiController: {fileID: 1988876116}
 --- !u!114 &1988876116
 MonoBehaviour:
   m_ObjectHideFlags: 0

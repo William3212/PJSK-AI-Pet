@@ -25,26 +25,24 @@ public class AppBootstrap : MonoBehaviour
 
     void LoadLastCharacterAndState()
     {
-        // ⭐ 找上一次角色
-        string lastCharacter =
-            SettingsStorage.LoadLastCharacter();
+        string lastCharacter = SettingsStorage.LoadLastCharacter();
 
         int index = characterManager.characters
             .FindIndex(c => c.characterName == lastCharacter);
 
-        if (index < 0) index = 0;
+        if (index < 0)
+            index = 0;
 
-        // ⭐ 切角色（这里会加载默认 / 保存值）
-        uiController.SetCharacterDropdownWithoutNotify(index);
+        // 只做一次切换（这是唯一入口）
         characterManager.SwitchCharacter(index);
 
-        // ⭐ 恢复性别 & 风格（UI + Animator）
-        uiController.ApplySavedGenderAndStyle();
+        // 同步 UI（不触发事件）
+        uiController.SetCharacterDropdownWithoutNotify(index);
     }
+
 
     void RefreshAllUI()
     {
-        uiController.RefreshAllDropdowns();
         settingPanelUI.RefreshUI();
     }
 }

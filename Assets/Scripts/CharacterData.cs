@@ -10,6 +10,9 @@ public class CharacterData
     public MaleStyle defaultMaleStyle;
     public FemaleStyle defaultFemaleStyle;
 
-    // ⭐ AI Prompt
+    // ===== 运行时 =====
+    public Gender runtimeGender;
+    public int runtimeStyle;
+
     public string runtimeAIPrompt;
 }

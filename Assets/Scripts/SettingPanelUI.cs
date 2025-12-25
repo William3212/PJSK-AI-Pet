@@ -11,6 +11,8 @@ public class SettingPanelUI : MonoBehaviour
     public CharacterManager characterManager;
     public DeskPetAnimator animator;
     public DeepSeekClient deepSeekClient;
+    public UIController uiController;
+
 
     void OnEnable()
     {
@@ -19,16 +21,20 @@ public class SettingPanelUI : MonoBehaviour
 
     public void RefreshUI()
     {
-        // API
+        // ===== API =====
         apiUrlInput.text = SettingsStorage.LoadApiUrl();
         apiKeyInput.text = SettingsStorage.LoadApiKey();
 
-        if (characterManager.CurrentCharacter == null) return;
+        if (characterManager.CurrentCharacter == null)
+            return;
 
+        // ===== Prompt =====
         promptInput.SetTextWithoutNotify(
             characterManager.CurrentCharacter.runtimeAIPrompt
         );
+
     }
+
 
     // ⭐ 保存按钮
     public void OnSaveClicked()
@@ -60,6 +66,16 @@ public class SettingPanelUI : MonoBehaviour
 
         SettingsStorage.SaveCharacterStyle(name, style);
 
+        // ===== 同步运行时状态 =====
+        character.runtimeGender = animator.gender;
+
+        character.runtimeStyle =
+            animator.gender == Gender.Male
+                ? (int)animator.maleStyle
+                : (int)animator.femaleStyle;
+
+
         Debug.Log("设置已保存");
+        Debug.Log($"设置已保存: {name}, 性别={character.runtimeGender}, 风格={character.runtimeStyle}");
     }
 }

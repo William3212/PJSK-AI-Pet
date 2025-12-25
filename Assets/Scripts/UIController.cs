@@ -22,18 +22,7 @@ public class UIController : MonoBehaviour
         genderDropdown.onValueChanged.AddListener(OnGenderChanged);
         styleDropdown.onValueChanged.AddListener(OnStyleChanged);
 
-        // 初始化
-        petAnimator.gender = (Gender)genderDropdown.value;
-        RefreshStyleDropdown(petAnimator.gender);
-        //启动时恢复“上一次角色”
-        string last = SettingsStorage.LoadLastCharacter();
-        int index = characterManager.characters
-            .FindIndex(c => c.characterName == last);
-
-        if (index < 0) index = 0;
-        characterDropdown.value = index;
-        characterManager.SwitchCharacter(index);
-
+        SyncDropdownsFromCharacter();
     }
 
 
@@ -46,12 +35,10 @@ public class UIController : MonoBehaviour
             names.Add(c.characterName);
 
         characterDropdown.AddOptions(names);
-        OnCharacterChanged(0);
     }
 
     void InitGenderDropdown()
     {
-        genderDropdown.ClearOptions();
         genderDropdown.AddOptions(new List<string> { "Male", "Female" });
     }
 
@@ -62,16 +49,16 @@ public class UIController : MonoBehaviour
         var character = characterManager.CurrentCharacter;
 
         // 同步性别下拉框
-        genderDropdown.value = (int)character.defaultGender;
 
-        // 刷新风格列表
-        RefreshStyleDropdown(character.defaultGender);
+        genderDropdown.value = (int)character.runtimeGender;
+        
 
         // 同步风格下拉框
-        if (character.defaultGender == Gender.Male)
-            styleDropdown.value = (int)character.defaultMaleStyle;
+ 
+        if (character.runtimeGender == Gender.Male)
+            styleDropdown.value = character.runtimeStyle;
         else
-            styleDropdown.value = (int)character.defaultFemaleStyle;
+            styleDropdown.value = character.runtimeStyle;
 
         OnStyleChanged(styleDropdown.value);
         settingPanelUI.RefreshUI();
@@ -109,8 +96,6 @@ public class UIController : MonoBehaviour
             );
         }
 
-        styleDropdown.value = 0;
-        OnStyleChanged(0);
     }
 
     void OnStyleChanged(int index)
@@ -122,38 +107,33 @@ public class UIController : MonoBehaviour
 
         petAnimator.PlayIdle();
     }
+    
     public void SetCharacterDropdownWithoutNotify(int index)
     {
         characterDropdown.SetValueWithoutNotify(index);
     }
-    public void ApplySavedGenderAndStyle()
+
+
+
+    void SyncDropdownsFromCharacter()
     {
         var character = characterManager.CurrentCharacter;
-        string name = character.characterName;
+        if (character == null) return;
+
+        // 角色下拉框
+        int index = characterManager.characters
+            .FindIndex(c => c == character);
+
+        if (index >= 0)
+            characterDropdown.SetValueWithoutNotify(index);
 
         // 性别
-        int gender = SettingsStorage.LoadCharacterGender(
-            name, (int)character.defaultGender);
-
-        genderDropdown.SetValueWithoutNotify(gender);
-        petAnimator.gender = (Gender)gender;
+        genderDropdown.SetValueWithoutNotify((int)character.runtimeGender);
 
         // 风格
-        RefreshStyleDropdown(petAnimator.gender);
-
-        int style = SettingsStorage.LoadCharacterStyle(
-            name,
-            petAnimator.gender == Gender.Male
-                ? (int)character.defaultMaleStyle
-                : (int)character.defaultFemaleStyle
-        );
-
-        styleDropdown.SetValueWithoutNotify(style);
-        OnStyleChanged(style);
+        RefreshStyleDropdown(character.runtimeGender);
+        styleDropdown.SetValueWithoutNotify(character.runtimeStyle);
     }
-    public void RefreshAllDropdowns()
-    {
-        RefreshStyleDropdown(petAnimator.gender);
-    }
+
 
 }

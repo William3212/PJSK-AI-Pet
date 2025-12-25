@@ -31,19 +31,34 @@ public void SwitchCharacter(int index)
         string name = CurrentCharacter.characterName;
 
         // ⭐ 读取性别
-        animator.gender = (Gender)
-            SettingsStorage.LoadCharacterGender(
+        // === 性别 ===
+        CurrentCharacter.runtimeGender =
+            (Gender)SettingsStorage.LoadCharacterGender(
                 name, (int)CurrentCharacter.defaultGender);
+
+        animator.gender = CurrentCharacter.runtimeGender;
+
 
         // ⭐ 读取风格
         if (animator.gender == Gender.Male)
-            animator.maleStyle = (MaleStyle)
+        {
+            CurrentCharacter.runtimeStyle =
                 SettingsStorage.LoadCharacterStyle(
                     name, (int)CurrentCharacter.defaultMaleStyle);
+        }
         else
-            animator.femaleStyle = (FemaleStyle)
+        {
+            CurrentCharacter.runtimeStyle =
                 SettingsStorage.LoadCharacterStyle(
                     name, (int)CurrentCharacter.defaultFemaleStyle);
+        }
+        
+        // 同步到 Animator
+        if (animator.gender == Gender.Male)
+            animator.maleStyle = (MaleStyle)CurrentCharacter.runtimeStyle;
+        else
+            animator.femaleStyle = (FemaleStyle)CurrentCharacter.runtimeStyle;
+
 
         // ⭐ 读取 Prompt
         CurrentCharacter.runtimeAIPrompt =
