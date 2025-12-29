@@ -37,10 +37,11 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterManager.cs" />
-     <Compile Include="Assets\PetDrag.cs" />
      <Compile Include="Assets\Scripts\CharacterData.cs" />
+     <Compile Include="Assets\Scripts\DialogBubbleController.cs" />
      <Compile Include="Assets\Scripts\CharacterConfig.cs" />
      <Compile Include="Assets\Scripts\DeepSeekClient.cs" />
+     <Compile Include="Assets\Scripts\DeskPetClick.cs" />
      <Compile Include="Assets\Scripts\SimpleAIResponse.cs" />
      <Compile Include="Assets\Scripts\SettingsStorage.cs" />
      <Compile Include="Assets\Scripts\CharacterLoader.cs" />
