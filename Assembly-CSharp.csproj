@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterManager.cs" />
      <Compile Include="Assets\Scripts\CharacterData.cs" />
+     <Compile Include="Assets\Scripts\ChatMemory.cs" />
      <Compile Include="Assets\Scripts\DialogBubbleController.cs" />
      <Compile Include="Assets\Scripts\CharacterConfig.cs" />
      <Compile Include="Assets\Scripts\DeepSeekClient.cs" />
@@ -51,6 +52,7 @@
      <Compile Include="Assets\Scripts\UIController.cs" />
      <Compile Include="Assets\Scripts\DeepSeekRequest.cs" />
      <Compile Include="Assets\Scripts\Gender.cs" />
+     <Compile Include="Assets\Scripts\ChatMemoryStorage.cs" />
      <Compile Include="Assets\Scripts\ChatController.cs" />
      <Compile Include="Assets\Scripts\Style.cs" />
      <Compile Include="Assets\Scripts\DeepSeekResponse.cs" />
@@ -65,8 +67,10 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
      <None Include="Assets\Resources\SpineCharacters\04Shiho\sekai_atlas.atlas.txt" />
      <None Include="Assets\Resources\SpineCharacters\11Akito\sekai_atlas.atlas.txt" />
+     <None Include="Assets\Resources\SpineCharacters\21Miku\sekai_atlas.atlas.txt" />
      <None Include="Assets\Resources\SpineCharacters\02Saki\sekai_atlas.atlas.txt" />
      <None Include="Assets\Resources\SpineCharacters\08Shizuku\sekai_atlas.atlas.txt" />
+     <None Include="Assets\Resources\SpineCharacters\21Miku_movie\sekai_atlas.atlas.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\Resources\SpineCharacters\17Kanade\sekai_atlas.atlas.txt" />

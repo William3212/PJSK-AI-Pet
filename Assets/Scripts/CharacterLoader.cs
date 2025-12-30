@@ -29,7 +29,9 @@ public static class CharacterLoader
                     : (int)cfg.defaultFemaleStyle,
 
                 // ⭐ 用默认 Prompt 初始化
-                runtimeAIPrompt = cfg.defaultAIPrompt
+                runtimeAIPrompt = cfg.defaultAIPrompt,
+                // ✅ 加载聊天记忆
+                memory = ChatMemoryStorage.Load(cfg.displayName)
             };
 
             list.Add(data);

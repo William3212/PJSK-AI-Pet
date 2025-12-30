@@ -66,7 +66,7 @@ public class ChatController : MonoBehaviour
 
     IEnumerator TypeText(string fullText)
     {
-        Debug.Log("[TypeText] Coroutine Start");
+        // Debug.Log("[TypeText] Coroutine Start");
         replyText.text = "";
         dialogBubble.ShowReply();
 

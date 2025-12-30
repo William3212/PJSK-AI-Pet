@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("UIController Start()");
+        // Debug.Log("UIController Start()");
 
         InitCharacterDropdown();
         InitGenderDropdown();
@@ -87,7 +87,7 @@ public class UIController : MonoBehaviour
             ? new List<string> { "Cool", "Happy", "Normal" }
             : new List<string> { "Adult", "Cool", "Cute", "Happy", "Pure" };
         styleDropdown.AddOptions(options);
-        Debug.Log($"Style options count = {styleDropdown.options.Count}");
+        // Debug.Log($"Style options count = {styleDropdown.options.Count}");
     }
 
     void OnStyleChanged(int index)

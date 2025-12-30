@@ -15,4 +15,7 @@ public class CharacterData
     public int runtimeStyle;
 
     public string runtimeAIPrompt;
+
+    public ChatMemory memory = new ChatMemory();
+
 }

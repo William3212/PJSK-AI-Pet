@@ -19,6 +19,12 @@ public class SettingPanelUI : MonoBehaviour
         RefreshUI();
     }
 
+    void Awake()
+    {
+        gameObject.SetActive(false);
+    }
+
+
     public void RefreshUI()
     {
         // ===== API =====
@@ -78,4 +84,22 @@ public class SettingPanelUI : MonoBehaviour
         Debug.Log("设置已保存");
         Debug.Log($"设置已保存: {name}, 性别={character.runtimeGender}, 风格={character.runtimeStyle}");
     }
+
+    public void OnClearMemoryClicked()
+    {
+        deepSeekClient.ClearCurrentCharacterMemory();
+    }
+
+    public void Open()
+    {
+        gameObject.SetActive(true);
+        RefreshUI();
+    }
+
+    // 关闭设置面板（绑定“关闭按钮”）
+    public void Close()
+    {
+        gameObject.SetActive(false);
+    }
+
 }
