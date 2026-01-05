@@ -10,6 +10,7 @@
     "com.unity.timeline": "1.6.4",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.7.8",
+    "com.xjine.singleton_mono_behaviour": "https://github.com/XJINE/Unity_SingletonMonoBehaviour.git?path=Assets/Packages/SingletonMonoBehaviour",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

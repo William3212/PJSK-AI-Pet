@@ -225,6 +225,13 @@
       },
       "url": "https://packages.unity.cn"
     },
+    "com.xjine.singleton_mono_behaviour": {
+      "version": "https://github.com/XJINE/Unity_SingletonMonoBehaviour.git?path=Assets/Packages/SingletonMonoBehaviour",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f904ac27b29735306e21dbfaa3cf976a04e6b30b"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

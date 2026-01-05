@@ -23,8 +23,8 @@ public class DialogBubbleController : MonoBehaviour
     [Header("Refs")]
     public ChatController chatController;
 
-    Coroutine hideInputCoroutine;
-    Coroutine hideReplyCoroutine;
+    private Coroutine hideInputCoroutine;
+    private Coroutine hideReplyCoroutine;
 
     void Start()
     {
@@ -33,8 +33,13 @@ public class DialogBubbleController : MonoBehaviour
 
         sendButton.onClick.AddListener(OnSendClicked);
 
+        // 当输入框被选中或输入时取消隐藏
         inputField.onSelect.AddListener(_ => CancelHideInput());
-        inputField.onDeselect.AddListener(_ => StartHideInputTimer());
+        inputField.onDeselect.AddListener(_ => StartHideInputIfEmpty());
+        inputField.onValueChanged.AddListener(_ => {
+            if (!string.IsNullOrWhiteSpace(inputField.text))
+                CancelHideInput();
+        });
         inputField.onSubmit.AddListener(_ => OnSendClicked());
     }
 
@@ -44,34 +49,52 @@ public class DialogBubbleController : MonoBehaviour
     {
         inputPanel.SetActive(true);
         inputField.text = "";
-        inputField.ActivateInputField();
+        // 不自动聚焦光标
         CancelHideInput();
+
+        // 如果输入框为空，启动倒计时自动隐藏
+        StartHideInputIfEmpty();
     }
 
-    void StartHideInputTimer()
+    void StartHideInputIfEmpty()
     {
         CancelHideInput();
-        hideInputCoroutine = StartCoroutine(HideInputDelay());
+        hideInputCoroutine = StartCoroutine(HideInputIfEmptyDelay());
     }
 
     void CancelHideInput()
     {
         if (hideInputCoroutine != null)
+        {
             StopCoroutine(hideInputCoroutine);
+            hideInputCoroutine = null;
+        }
     }
 
-    IEnumerator HideInputDelay()
+    IEnumerator HideInputIfEmptyDelay()
     {
-        yield return new WaitForSeconds(inputAutoHideTime);
+        float elapsed = 0f;
+        while (elapsed < inputAutoHideTime)
+        {
+            // 如果用户输入了内容，则停止倒计时
+            if (!string.IsNullOrWhiteSpace(inputField.text))
+                yield break;
+
+            elapsed += Time.deltaTime;
+            yield return null; // 等待下一帧
+        }
+
+        // 时间到且没有输入内容，隐藏输入框
         inputPanel.SetActive(false);
+        hideInputCoroutine = null;
     }
 
     void OnSendClicked()
     {
-        if (string.IsNullOrWhiteSpace(inputField.text))
-            return;
-
         string text = inputField.text;
+
+        if (string.IsNullOrWhiteSpace(text))
+            return;
 
         inputField.text = "";
         inputPanel.SetActive(false);
@@ -90,7 +113,6 @@ public class DialogBubbleController : MonoBehaviour
 
         hideReplyCoroutine = StartCoroutine(HideReplyDelay());
     }
-
 
     IEnumerator HideReplyDelay()
     {
